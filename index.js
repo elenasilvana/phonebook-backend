@@ -39,12 +39,16 @@ app.use(
 );
 
 app.get("/info", (request, response) => {
-  response.send(
-    `<div>
-      <p>Phonebook has info for ${persons.length} people</p>
-      <p>${new Date()}</p>
-    </div>`
-  );
+  Person.find({})
+    .then((persons) => {
+      response.send(
+        `<div>
+          <p>Phonebook has info for ${persons.length} people</p>
+          <p>${new Date()}</p>
+        </div>`
+      );
+    })
+    .catch((error) => next(error));
 });
 
 app.get("/api/persons", (request, response, next) => {
