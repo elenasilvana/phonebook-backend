@@ -1,8 +1,8 @@
-require("dotenv").config();
-const mongoose = require("mongoose");
+require('dotenv').config();
+const mongoose = require('mongoose');
 
 if (process.argv.length < 3) {
-  console.log("Missing arguments, please provide your password");
+  console.log('Missing arguments, please provide your password');
   process.exit(1);
 }
 
@@ -24,7 +24,7 @@ const personSchema = new mongoose.Schema({
   number: String,
 });
 
-const Person = mongoose.model("Person", personSchema);
+const Person = mongoose.model('Person', personSchema);
 
 if (password && name && number) {
   const person = new Person({
@@ -37,7 +37,7 @@ if (password && name && number) {
     mongoose.connection.close();
   });
 } else if (password) {
-  Person.find({ name: "Tom" }).then((result) => {
+  Person.find({ name: 'Tom' }).then((result) => {
     result.forEach(({ name, number }) => {
       console.log(`${name} number: ${number}`);
     });
